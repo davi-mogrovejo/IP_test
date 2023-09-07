@@ -2,12 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IP Address Detector</title>
 </head>
 <body>
-    <h1>Your IP Addresses</h1>
-    <div id="ipv4">IPv4 Address:</div>
-    <div id="ipv6">IPv6 Address:</div>
+    <h1>Welcome to IP Address Detector</h1>
+    <p>Your IPv4 Address: <span id="ipv4"></span></p>
+    <p>Your IPv6 Address: <span id="ipv6"></span></p>
+
+    <script>
+        function getIPAddresses() {
+            // Fetch IPv6 address
+            fetch('https://api64.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('ipv6').textContent = data.ip;
+                })
+                .catch(err => {
+                    console.error('Error fetching IPv6 address:', err);
+                    document.getElementById('ipv6').textContent = 'N/A';
+                });
+
+            // Fetch IPv4 address
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('ipv4').textContent = data.ip;
+                })
+                .catch(err => {
+                    console.error('Error fetching IPv4 address:', err);
+                    document.getElementById('ipv4').textContent = 'N/A';
+                });
+        }
+
+        window.onload = getIPAddresses;
+    </script>
 </body>
 </html>
