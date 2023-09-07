@@ -1,22 +1,26 @@
-// Function to get IPv4 and IPv6 addresses
-function getIPs(callback) {
-    // Use a third-party service to fetch IP addresses
+// script.js
+function getIPAddresses() {
+    // Fetch IPv6 address
     fetch('https://api64.ipify.org?format=json')
         .then(response => response.json())
         .then(data => {
-            const ipv4Address = data.ip;
-            const ipv6Address = window.location.origin;
-
-            callback(ipv4Address, ipv6Address);
+            document.getElementById('ipv6').textContent = data.ip;
         })
-        .catch(error => console.error(error));
+        .catch(err => {
+            console.error('Error fetching IPv6 address:', err);
+            document.getElementById('ipv6').textContent = 'N/A';
+        });
+
+    // Fetch IPv4 address
+    fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('ipv4').textContent = data.ip;
+        })
+        .catch(err => {
+            console.error('Error fetching IPv4 address:', err);
+            document.getElementById('ipv4').textContent = 'N/A';
+        });
 }
 
-// Function to update the HTML with IP addresses
-function updateIPAddresses(ipv4, ipv6) {
-    document.getElementById('ipv4').textContent = `IPv4 Address: ${ipv4}`;
-    document.getElementById('ipv6').textContent = `IPv6 Address: ${ipv6}`;
-}
-
-// Call the getIPs function and update the HTML
-getIPs(updateIPAddresses);
+window.onload = getIPAddresses;
