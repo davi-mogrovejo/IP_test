@@ -1,17 +1,25 @@
-// Function to fetch and display the user's IP address
-async function getIpAddress() {
-    try {
-        const response = await fetch('https://api.ipify.org?format=json');
-        const data = await response.json();
-        const ipAddress = data.ip;
+// Function to detect and display IPv4 and IPv6 addresses
+function detectIPAddresses() {
+    // Try to fetch IPv6 address
+    fetch('https://ipv6bot.whatismyipaddress.com/')
+        .then(response => response.text())
+        .then(ipv6 => {
+            document.getElementById('ipv6').textContent = ipv6;
+        })
+        .catch(err => {
+            document.getElementById('ipv6').textContent = 'IPv6 not available';
+        });
 
-        // Update the IP address on the webpage
-        document.getElementById('ip-address').textContent = ipAddress;
-    } catch (error) {
-        console.error('Error fetching IP address:', error);
-        document.getElementById('ip-address').textContent = 'Error';
-    }
+    // Try to fetch IPv4 address
+    fetch('https://ipv4bot.whatismyipaddress.com/')
+        .then(response => response.text())
+        .then(ipv4 => {
+            document.getElementById('ipv4').textContent = ipv4;
+        })
+        .catch(err => {
+            document.getElementById('ipv4').textContent = 'IPv4 not available';
+        });
 }
 
 // Call the function when the page loads
-window.addEventListener('load', getIpAddress);
+window.onload = detectIPAddresses;
