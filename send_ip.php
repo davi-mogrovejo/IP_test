@@ -5,9 +5,9 @@ $ipAddress = $_SERVER['REMOTE_ADDR']; // Get the user's IP address
 $to = 'davi.mogrovejo@gmail.com'; // Replace with your email address
 $subject = 'User IP Address';
 $message = 'The user\'s IP address is: ' . $ipAddress;
-$headers = 'From: webmaster@example.com' . "\r\n" .
-    'Reply-To: webmaster@example.com' . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
+$headers = 'From: davi.mogrovejo@gmail.com' . "\r\n" .
+   'Reply-To: your_email@example.com' . "\r\n" .
+   'X-Mailer: PHP/' . phpversion();
 
 // Send the email
 mail($to, $subject, $message, $headers);
