@@ -13,5 +13,5 @@ $headers = 'From: webmaster@example.com' . "\r\n" .
 mail($to, $subject, $message, $headers);
 
 // Redirect the user back to the webpage
-header('Location: https://davi-mogrovejo.github.io/IP_test/'); // Replace with the actual URL of your webpage
+header('https://davi-mogrovejo.github.io/IP_test/'); // Replace with the actual URL of your webpage
 ?>
