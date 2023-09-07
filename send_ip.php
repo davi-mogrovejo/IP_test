@@ -2,7 +2,7 @@
 $ipAddress = $_SERVER['REMOTE_ADDR']; // Get the user's IP address
 
 // Your email configuration
-$to = 'your@email.com'; // Replace with your email address
+$to = 'davi.mogrovejo@gmail.com'; // Replace with your email address
 $subject = 'User IP Address';
 $message = 'The user\'s IP address is: ' . $ipAddress;
 $headers = 'From: webmaster@example.com' . "\r\n" .
