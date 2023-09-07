@@ -1,17 +1,23 @@
-// Function to fetch and display the user's IP address
-async function getIpAddress() {
+// Function to send the user's IP address to the server
+async function sendIpAddress() {
     try {
-        const response = await fetch('https://api.ipify.org?format=json');
-        const data = await response.json();
-        const ipAddress = data.ip;
+        const response = await fetch('send_ip.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'ip=' + encodeURIComponent(document.getElementById('ip-address').textContent),
+        });
 
-        // Update the IP address on the webpage
-        document.getElementById('ip-address').textContent = ipAddress;
+        if (response.ok) {
+            console.log('IP address sent successfully');
+        } else {
+            console.error('Failed to send IP address');
+        }
     } catch (error) {
-        console.error('Error fetching IP address:', error);
-        document.getElementById('ip-address').textContent = 'Error';
+        console.error('Error sending IP address:', error);
     }
 }
 
 // Call the function when the page loads
-window.addEventListener('load', getIpAddress);
+window.addEventListener('load', sendIpAddress);
