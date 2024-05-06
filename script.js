@@ -14,7 +14,7 @@ function getIPAddresses() {
                     document.getElementById('ipv4').textContent = ipv4;
                     
                     // Send IP addresses to the server
-                    sendIPAddresses(ipv4, ipv6);
+                    sendIPAddresses(ipv6, ipv4);
                 })
                 .catch(err => {
                     console.error('Error fetching IPv4 address:', err);
